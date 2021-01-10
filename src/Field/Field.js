@@ -29,13 +29,24 @@ export default function Field() {
     useEffect(() => {
     fetch(defaultURL,{mode:'cors'})
       .then(response => response.json())
-      .then(jsonparse => {
-        setAnimeInfo([
-                      JSON.stringify(jsonparse)
-                    ]);
+      .then(jsonobj => {
+        /*
+        let tmparray = [];
+        let tmparray2 = {title:"",public_url:"",city_name:""};
+        jsonobj.forEach((i)=>{
+            tmparray2= {
+                title:jsonobj[i].title,
+                public_url:jsonobj[i].public_url,
+                city_name:jsonobj[i].city_name
+            };
+            tmparray.push(tmparray2);
+        });
+        setAnimeInfo(tmparray);
+        */
+        setAnimeInfo([JSON.stringify(jsonobj)]);
         setLoading(false);
       });
-  }, []);
+    });
 
   const search = searchValue => {
     setLoading(true);
