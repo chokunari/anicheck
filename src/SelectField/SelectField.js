@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
-//import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-//import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 
@@ -48,16 +46,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SelectField() {
+export default function SelectField(props) {
   const classes = useStyles();
-  const [year, setYear] = useState('');
-  const [season, setSeason] = useState('');
+
   const yearChange = (event) => {
-    setYear(event.target.value);
+    props.settingYear(event.target.value);
   };
   const seasonChange = (event) => {
-    setSeason(event.target.value);
-  };  
+    props.settingSeason(event.target.value);
+  }; 
 
   return (
     <div>
@@ -66,7 +63,7 @@ export default function SelectField() {
                 放送年
             </InputLabel>
             <NativeSelect
-                value={year}
+                value={props.defaultYear}
                 onChange={yearChange}
                 inputProps={{
                   name: 'year',
@@ -121,17 +118,17 @@ export default function SelectField() {
                 クール
             </InputLabel>
             <NativeSelect
-                value={season}
+                value={props.defaultSeason}
                 onChange={seasonChange}
                 inputProps={{
                   name: 'season',
                   id: 'season-native-label-placeholder',
                 }}
             >
-                <option value={'Winter'}>1〜3月</option>
-                <option value={'Spring'}>4〜6月</option>
-                <option value={'Summer'}>7〜9月</option>
-                <option value={'Autumn'}>10〜12月</option>
+                <option value={1}>1〜3月</option>
+                <option value={2}>4〜6月</option>
+                <option value={3}>7〜9月</option>
+                <option value={4}>10〜12月</option>
             </NativeSelect>
       </FormControl>
     </div>
