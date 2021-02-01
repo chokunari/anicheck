@@ -6,8 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   field: {
     position: 'relative',
-    top: 50,
-    left: 100,
+    //top: 10,
+    left: 10,
   },
 });
 
