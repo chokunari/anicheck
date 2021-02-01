@@ -19,7 +19,13 @@ export default function AnimeCard(props) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea 
+          href={props.public_url} 
+          target="_blank" 
+          //セキュリティ対策
+          //https://web.dev/external-anchors-use-rel-noopener/
+          rel="noopener noreferrer"
+      >
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
@@ -36,16 +42,7 @@ export default function AnimeCard(props) {
             {props.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-              公式サイト：
-              <a 
-                href={props.public_url} 
-                target="_blank" 
-                //セキュリティ対策
-                //https://web.dev/external-anchors-use-rel-noopener/
-                rel="noopener noreferrer"
-                >
-                {props.public_url}
-              </a>
+              {`公式サイト：${props.public_url}`}
               <br/>
               {props.city_name ? (
                   `聖地：${props.city_name}`
