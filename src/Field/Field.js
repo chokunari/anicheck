@@ -3,6 +3,7 @@ import SelectField from '../SelectField/SelectField';
 import AnimeCard from '../Card/AnimeCard';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+//const cors_proxy = require('cors-anywhere');
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +33,7 @@ export default function Field() {
                   title:jsonobj[i].title,
                   public_url:jsonobj[i].public_url,
                   city_name:jsonobj[i].city_name,
-                  img:""
+                  img:ogpImgGet(jsonobj[i].public_url)
               };
               //tmparray.push(JSON.stringify(tmparray2));
               tmparray.push(tmparray2);
@@ -49,6 +50,23 @@ export default function Field() {
   }
   const settingSeason = returnSeason => {
     setSeason(returnSeason);
+  }
+
+  const ogpImgGet = url => {
+    fetch(url).then(res => res.text()).then(text => {
+      const el = new DOMParser().parseFromString(text, "text/html")
+      const headEls = (el.head.children)
+  
+      return Array.from(headEls).map(elem => {
+          const noImage = '/App/tmp/NoImage.png'
+          if (elem.getAttribute('property') === 'og:image'){
+              console.log(elem.getAttribute('content'));
+              return elem.getAttribute('content');
+          }else{
+            return noImage;
+          }
+      })
+    });  
   }
 
   return (

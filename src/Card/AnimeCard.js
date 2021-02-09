@@ -28,14 +28,19 @@ export default function AnimeCard(props) {
       >
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
+          alt="NoImage"
           height="100"
-          image={props.img ? (
-            props.img
+          //画像パスはpublic配下からの相対パスで指定。
+          image="/static/yurucamp.jpg"
+          /*image={props.img ? (
+            //props.img
+            //'https://drive.google.com/file/d/1OFecsV581TwGEvBPR4gp7UTPCLDyqLVM/view?usp=sharing'
+            "/App/tmp/yurucamp.jpg"
           ):(
-            ""
-          )}
-          title="Contemplative Reptile"
+            //'https://drive.google.com/file/d/1OFecsV581TwGEvBPR4gp7UTPCLDyqLVM/view?usp=sharing'
+            "/App/tmp/yurucamp.jpg"
+          )}*/
+          title="ImageData"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
