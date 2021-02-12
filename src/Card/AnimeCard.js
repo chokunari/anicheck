@@ -30,8 +30,9 @@ export default function AnimeCard(props) {
           component="img"
           alt="NoImage"
           height="100"
-          //画像パスはpublic配下からの相対パスで指定。
-          image="/static/yurucamp.jpg"
+          //画像パスはpublic配下からの相対パスで指定。属性はimgでもsrcでもOK。
+          src="/static/yurucamp.jpg"
+          //src="https://drive.google.com/file/d/1OFecsV581TwGEvBPR4gp7UTPCLDyqLVM/view?usp=sharing"
           /*image={props.img ? (
             //props.img
             //'https://drive.google.com/file/d/1OFecsV581TwGEvBPR4gp7UTPCLDyqLVM/view?usp=sharing'

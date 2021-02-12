@@ -84,7 +84,7 @@ export default function Field() {
             {/*<Grid item xs={12}>*/}
                 {/*<Grid container justify="center" spacing={2}>*/}
                     {animeinfo.map((anime,index) => (
-                        <Grid key={index} item xs={3} spacing={1}>
+                        <Grid key={index} item xs={3}>
                           <AnimeCard 
                             //keyは不要だがエラーが出ないようにするために入れている。
                             //https://ja.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key
