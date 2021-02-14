@@ -53,7 +53,7 @@ export default function Field() {
   }
 
   const ogpImgGet = url => {
-    fetch(url).then(res => res.text()).then(text => {
+    fetch(url,{mode:'cors'}).then(res => res.text()).then(text => {
       const el = new DOMParser().parseFromString(text, "text/html")
       const headEls = (el.head.children)
   
