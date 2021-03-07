@@ -3,7 +3,6 @@ import SelectField from '../SelectField/SelectField';
 import AnimeCard from '../Card/AnimeCard';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-//const cors_proxy = require('cors-anywhere');
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,16 +25,16 @@ export default function Field() {
       const apiURL = `http://api.moemoe.tokyo/anime/v1/master/${year}/${season}`;
       fetch(apiURL,{mode:'cors'})
         .then(response => response.json())
-        .then(jsonobj => {
+        .then( async (jsonobj) => {
           let tmparray = [];
           for(let i in jsonobj) {
+              const img = await ogpImgGet(jsonobj[i].public_url);
               let tmparray2= {
                   title:jsonobj[i].title,
                   public_url:jsonobj[i].public_url,
                   city_name:jsonobj[i].city_name,
-                  img:ogpImgGet(jsonobj[i].public_url)
+                  img: img,
               };
-              //tmparray.push(JSON.stringify(tmparray2));
               tmparray.push(tmparray2);
           };
           setAnimeInfo(tmparray);
@@ -53,21 +52,30 @@ export default function Field() {
   }
 
   const ogpImgGet = url => {
-    fetch(url,{mode:'cors'}).then(res => res.text()).then(text => {
-      const el = new DOMParser().parseFromString(text, "text/html")
-      const headEls = (el.head.children)
-  
-      return Array.from(headEls).map(elem => {
-          const noImage = '/App/tmp/NoImage.png'
-          if (elem.getAttribute('property') === 'og:image'){
-              console.log(elem.getAttribute('content'));
-              return elem.getAttribute('content');
-          }else{
-            return noImage;
-          }
-      })
-    });  
-  }
+    const backendURL = 'http://localhost:4000/getOgp';
+    const data = { reqURL: url };
+    const imgSrc = 
+    fetch(backendURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(jsonobj => {
+        console.log('Success:', jsonobj);
+        return jsonobj.imgSrc;
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        return null;
+    });
+    return new Promise((resolve, reject) => {
+      resolve(imgSrc);
+    });
+  };
+
 
   return (
     <React.Fragment>

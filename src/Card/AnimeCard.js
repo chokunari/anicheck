@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 
 export default function AnimeCard(props) {
   const classes = useStyles();
-
   return (
     <Card className={classes.root}>
       <CardActionArea 
@@ -30,17 +29,13 @@ export default function AnimeCard(props) {
           component="img"
           alt="NoImage"
           height="100"
-          //画像パスはpublic配下からの相対パスで指定。属性はimgでもsrcでもOK。
-          src="/static/yurucamp.jpg"
-          //src="https://drive.google.com/file/d/1OFecsV581TwGEvBPR4gp7UTPCLDyqLVM/view?usp=sharing"
-          /*image={props.img ? (
-            //props.img
-            //'https://drive.google.com/file/d/1OFecsV581TwGEvBPR4gp7UTPCLDyqLVM/view?usp=sharing'
-            "/App/tmp/yurucamp.jpg"
+          //画像パスはpublic配下からの相対パスで指定。属性はimageでもsrcでもOK。
+          //backendからの返り値がnullもしくは空オブジェクトの場合はNoImage.pngを入れる。
+          image={ props.img && !(props.img==={}) ? (
+            props.img
           ):(
-            //'https://drive.google.com/file/d/1OFecsV581TwGEvBPR4gp7UTPCLDyqLVM/view?usp=sharing'
-            "/App/tmp/yurucamp.jpg"
-          )}*/
+            "/static/NoImage.png"
+          )}
           title="ImageData"
         />
         <CardContent>
