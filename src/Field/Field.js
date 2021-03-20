@@ -22,12 +22,21 @@ export default function Field() {
   const classes = useStyles();
 
     useEffect(() => {
+      //ShangriLa Anime API URL
       const apiURL = `http://api.moemoe.tokyo/anime/v1/master/${year}/${season}`;
+      
+      //loading...の表示をするためにtrueにする。
+      setLoading(true);
+      
       fetch(apiURL,{mode:'cors'})
         .then(response => response.json())
         .then( async (jsonobj) => {
           let tmparray = [];
           for(let i in jsonobj) {
+              //test
+              const t1 = new Date();
+              console.log('ここから開始：' + t1.getTime());
+              //test
               const img = await ogpImgGet(jsonobj[i].public_url);
               let tmparray2= {
                   title:jsonobj[i].title,
@@ -89,8 +98,6 @@ export default function Field() {
          <span>loading...</span>
          ) : animeinfo.length ? (
           <Grid container className={classes.root} spacing={1}>
-            {/*<Grid item xs={12}>*/}
-                {/*<Grid container justify="center" spacing={2}>*/}
                     {animeinfo.map((anime,index) => (
                         <Grid key={index} item xs={3}>
                           <AnimeCard 
@@ -105,8 +112,6 @@ export default function Field() {
                           />
                         </Grid>
                     ))}
-                {/*</Grid>*/}
-            {/*</Grid>*/}
           </Grid>
          ) : (
           <p>データがありません。</p>
