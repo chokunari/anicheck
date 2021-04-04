@@ -32,7 +32,7 @@ export default function Field() {
             .then(response => response.json())
             .then(async (jsonobj) => {
                 setAnimeUrls(jsonobj)
-                setLoading(false);
+                
                 return jsonobj;
             })
     }, [year, season]);
@@ -57,6 +57,7 @@ export default function Field() {
                             tmparray2
                         ]
                     );
+                    loading && setLoading(false);
                 }
             );
 
