@@ -25,7 +25,7 @@ export default function Field() {
 
     useEffect(() => {
         //ShangriLa Anime API URL
-        const apiURL = `http://api.moemoe.tokyo/anime/v1/master/${year}/${season}`;
+        const apiURL = `https://api.moemoe.tokyo/anime/v1/master/${year}/${season}`;
         //loading...の表示をするためにtrueにする。
         setLoading(true);
         fetch(apiURL, {mode: 'cors'})
