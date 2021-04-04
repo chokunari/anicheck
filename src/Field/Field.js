@@ -57,7 +57,7 @@ export default function Field() {
                             tmparray2
                         ]
                     );
-                    loading && setLoading(false);
+                    setLoading(false);
                 }
             );
 
