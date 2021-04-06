@@ -56,11 +56,9 @@ export default function Field() {
                             tmparray2
                         ]
                     );
-                    /*
-                    if (animeinfo.length){
+                    //if (animeinfo.length){
                         setLoading(false);
-                    }
-                    */
+                    //}
                 }
             );
 
