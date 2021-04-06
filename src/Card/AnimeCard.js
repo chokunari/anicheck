@@ -44,12 +44,14 @@ export default function AnimeCard(props) {
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
               {`公式サイト：${props.public_url}`}
+              {/* 
               <br/>
               {props.city_name ? (
                   `聖地：${props.city_name}`
               ):(
                   '聖地：データなし'
               )}
+              */}
           </Typography>
         </CardContent>
       </CardActionArea>
