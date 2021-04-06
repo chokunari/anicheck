@@ -31,15 +31,14 @@ export default function Field() {
         fetch(apiURL, {mode: 'cors'})
             .then(response => response.json())
             .then(async (jsonobj) => {
-                setAnimeUrls(jsonobj)
-                
+                setAnimeUrls(jsonobj);
                 return jsonobj;
-            })
+            });
     }, [year, season]);
 
     useEffect(() => {
-        const control = new AbortController()
-        setAnimeInfo([])
+        const control = new AbortController();
+        setAnimeInfo([]);
         animeUrls
             .forEach(
                 async elem => {
@@ -57,7 +56,9 @@ export default function Field() {
                             tmparray2
                         ]
                     );
-                    setLoading(false);
+                    if (animeinfo.length){
+                        setLoading(false);
+                    }
                 }
             );
 
