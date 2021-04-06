@@ -57,10 +57,7 @@ export default function AnimeCard(props) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+          説明文(未実装)
         </Button>
       </CardActions>
     </Card>
