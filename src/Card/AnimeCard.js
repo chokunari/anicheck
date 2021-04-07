@@ -58,7 +58,7 @@ export default function AnimeCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="large" color="primary" fullWidth="true">
           説明文(未実装)
         </Button>
       </CardActions>
