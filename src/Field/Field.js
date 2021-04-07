@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
         //flexGrow: 1,
     },
     animecard: {
-        height: 160,
-        width: 80,
+        height: "100%",
+        width: "100%",
     },
 }));
 
@@ -114,7 +114,7 @@ export default function Field() {
             ) : animeinfo.length ? (
                 <Grid container className={classes.root} spacing={1}>
                     {animeinfo.map((anime, index) => (
-                        <Grid key={index} item xs={3}>
+                        <Grid key={index} item xs={12} sm={6} lg={6}>
                             <AnimeCard
                                 //keyは不要だがエラーが出ないようにするために入れている。
                                 //https://ja.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key
