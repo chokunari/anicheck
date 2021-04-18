@@ -71,15 +71,15 @@ export default function AnimeCard(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      
+
       <CardActions className={classes.cardButton} disableSpacing>
         <Button 
           size="large" 
           color="primary" 
-          fullWidth="true"
+          fullWidth = {true}
           onClick={handleExpandClick}
         >
-          説明文(未実装)
+          説明文
           <ExpandMoreIcon 
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
@@ -89,8 +89,7 @@ export default function AnimeCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-            {/*{props.description}*/}
-            テスト
+            {props.description}
         </CardContent>
       </Collapse>
     </Card>

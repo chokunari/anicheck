@@ -42,12 +42,12 @@ export default function Field() {
         animeUrls
             .forEach(
                 async elem => {
-                    const img = await ogpImgGet(elem.public_url, control.signal);
+                    const ogpData = await ogpGet(elem.public_url, control.signal);
                     let tmparray2 = {
                         title: elem.title,
                         public_url: elem.public_url,
-                        city_name: elem.city_name,
-                        img: img,
+                        img: ogpData.imgSrc,
+                        description: ogpData.description
                     };
                    !control.signal.aborted &&
                     setAnimeInfo(prevState =>
@@ -74,10 +74,10 @@ export default function Field() {
         setSeason(returnSeason);
     }
 
-    const ogpImgGet = (url, signal) => {
+    const ogpGet = (url, signal) => {
         const backendURL = `${process.env.REACT_APP_SERVER_URL}/getOgp`;
         const data = {reqURL: url};
-        const imgSrc =
+        const ogpData =
             fetch(backendURL, {
                 method: 'POST',
                 headers: {
@@ -88,15 +88,14 @@ export default function Field() {
             })
                 .then(response => response.json())
                 .then(jsonobj => {
-
-                    return jsonobj.imgSrc;
+                    return jsonobj;
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                     return null;
                 });
         return new Promise((resolve, reject) => {
-            resolve(imgSrc);
+            resolve(ogpData);
         });
     };
 
@@ -122,7 +121,7 @@ export default function Field() {
                                 img={anime.img}
                                 title={anime.title}
                                 public_url={anime.public_url}
-                                city_name={anime.city_name}
+                                description={anime.description}
                                 className={classes.animecard}
                             />
                         </Grid>
