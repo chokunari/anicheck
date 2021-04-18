@@ -55,7 +55,7 @@ export default function AnimeCard(props) {
           height="100"
           //画像パスはpublic配下からの相対パスで指定。属性はimageでもsrcでもOK。
           //backendからの返り値がnullもしくは空オブジェクトの場合はNoImage.pngを入れる。
-          image={ props.img && !(props.img==={}) ? (
+          image={ props.img && !(props.img==="") ? (
             props.img
           ):(
             "/static/NoImage.png"
@@ -89,7 +89,11 @@ export default function AnimeCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-            {props.description}
+            { props.description && !(props.description==="") ? (
+                props.description
+              ):(
+                "説明文なし"
+              )}
         </CardContent>
       </Collapse>
     </Card>
