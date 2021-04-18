@@ -37,12 +37,20 @@ export default function Field() {
     }, [year, season]);
 
     useEffect(() => {
+        setLoading(true);
         const control = new AbortController();
         setAnimeInfo([]);
         animeUrls
             .forEach(
                 async elem => {
-                    const ogpData = await ogpGet(elem.public_url, control.signal);
+                    let ogpData = await ogpGet(elem.public_url, control.signal);
+                    //描画中に年・クールを変更した時＝ogpGetをキャンセルした時、ogpDataはnullになるため初期化処理する。
+                    if (!ogpData){
+                         ogpData = {
+                            imgSrc: "",
+                            description: ""
+                          };
+                    }
                     let tmparray2 = {
                         title: elem.title,
                         public_url: elem.public_url,
@@ -56,12 +64,13 @@ export default function Field() {
                             tmparray2
                         ]
                     );
-                    //if (animeinfo.length){
-                        setLoading(false);
-                    //}
+                    setLoading(false);
                 }
             );
-
+        //データなしからデータなしの年・クールに遷移した場合にloadingが消えないバグの対応。
+        if(!animeUrls.length){
+            setLoading(false);
+        }
         return ()=>{
             control.abort()
         }
