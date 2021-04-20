@@ -15,13 +15,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Field() {
+    const classes = useStyles();
+
+    //現在の年・クールを取得
+    const nowDate = new Date();
+    const nowYear = nowDate.getFullYear();
+    const nowMonth = nowDate.getMonth()+1;
+    let nowSeason = 1;
+    if(nowMonth <= 3){
+      //1~3月
+      nowSeason = 1;
+    }else if(nowMonth >= 4 && nowMonth <= 6){
+      //4~6月
+      nowSeason = 2;
+    }else if(nowMonth >= 7 && nowMonth <= 9){
+      //7~9月
+      nowSeason = 3;
+    }else if(nowMonth >= 10 && nowMonth <= 12){
+      //9~12月
+      nowSeason = 4;
+    }
+
     const [loading, setLoading] = useState(true);
     const [animeUrls, setAnimeUrls] = useState([]);
     const [animeinfo, setAnimeInfo] = useState([]);
-
-    const [year, setYear] = useState('2021');
-    const [season, setSeason] = useState('1');
-    const classes = useStyles();
+    const [year, setYear] = useState(nowYear);
+    const [season, setSeason] = useState(nowSeason);
 
     useEffect(() => {
         //ShangriLa Anime API URL
