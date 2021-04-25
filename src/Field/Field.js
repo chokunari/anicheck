@@ -133,8 +133,9 @@ export default function Field() {
             <SelectField
                 settingYear={settingYear}
                 settingSeason={settingSeason}
-                defaultYear={year}
-                defaultSeason={season}
+                maxYear={nowYear}
+                selectedYear={year}
+                selectedSeason={season}
             />
             {loading ? (
                 <span>loading...</span>

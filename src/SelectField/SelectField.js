@@ -24,7 +24,7 @@ export default function SelectField(props) {
   //年の選択肢を自動で増やす処理。
   let yearChoices = [];
   const apiStartYear = 2014;
-  for(let i = apiStartYear; i <= props.defaultYear; i++){
+  for(let i = apiStartYear; i <= props.maxYear; i++){
     yearChoices.push(i);
   }
   const yearChoicesComp = yearChoices.map((yearChoice, key) => 
@@ -38,7 +38,7 @@ export default function SelectField(props) {
                 放送年
             </InputLabel>
             <NativeSelect
-                value={props.defaultYear}
+                value={props.selectedYear}
                 onChange={yearChange}
                 inputProps={{
                   name: 'year',
@@ -53,7 +53,7 @@ export default function SelectField(props) {
                 クール
             </InputLabel>
             <NativeSelect
-                value={props.defaultSeason}
+                value={props.selectedSeason}
                 onChange={seasonChange}
                 inputProps={{
                   name: 'season',
